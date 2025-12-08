@@ -53,39 +53,23 @@
             /* Header itself is transparent to allow chrome background to show */
         }
 
-        /* --- LOGO STYLES (Mimicking the Black/Red Logo Image) --- */
+        /* --- LOGO STYLES (Adjusted for Image Tag) --- */
         .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             margin-bottom: 15px;
+            /* Changed to column layout to match the provided image structure */
+            flex-direction: column;
+            gap: 5px; /* Reduced gap for image-text stack */
         }
 
-        .logo-icon {
-            /* Black background element */
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: var(--logo-black);
-            border: 3px solid var(--logo-red);
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-icon::before {
-            /* Red center element */
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--logo-red);
-            border: 2px solid var(--logo-black);
+        /* REMOVED: .logo-icon and .logo-icon::before CSS since we are using an <img> tag */
+        .logo-img {
+            /* Set size for the image element */
+            width: 100px; /* Adjust size to be prominent */
+            height: auto;
         }
 
         h1 {
@@ -396,7 +380,7 @@
     <div class="container">
         <header>
             <div class="logo-container">
-                <div class="logo-icon"></div>
+                <img src="photo_2025-12-08_21-11-34.jpg" class="logo-img" alt="Car HuyAir Logo">
                 <h1>Car HuyAir</h1>
             </div>
         </header>
