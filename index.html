@@ -21,24 +21,22 @@
             --logo-black: #1a1a1a; 
             --logo-red: #cc0000; 
             
-            /* Interface Colors: Chrome/Light */
-            --primary: #9d0208; 
-            --secondary: #585858; 
-            --accent: var(--logo-red); 
-            --light-bg: #f0f0f0; /* Chrome background */
-            --card-bg: #ffffff; /* White cards */
-            --dark-text: var(--logo-black); /* Black text */
+            /* Interface Colors: Chrome/Light Gray */
+            --chrome-light: #cccccc; /* Base Chrome Color */
+            --chrome-dark: #b0b0b0; 
+            --card-bg: #ffffff; /* White cards pop against chrome */
             
-            /* Success color for highlights, matching the logo red */
+            /* Unified Text Color */
+            --dark-text: var(--logo-black); 
+            
+            /* Accent Colors */
             --success: var(--logo-red); 
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
         }
 
         body {
-            /* Light chrome background */
-            background: linear-gradient(135deg, var(--light-bg) 0%, #e0e0e0 100%); 
-            color: var(--dark-text); /* Black text */
+            /* Stronger Chrome/Metallic Background */
+            background: linear-gradient(135deg, var(--chrome-light) 0%, var(--chrome-dark) 100%); 
+            color: var(--dark-text); /* All primary text is logo black */
             min-height: 100vh;
             padding: 20px;
         }
@@ -52,9 +50,10 @@
             text-align: center;
             padding: 20px 0;
             margin-bottom: 20px;
+            /* Header itself is transparent to allow chrome background to show */
         }
 
-        /* --- LOGO STYLES (To mimic the uploaded image) --- */
+        /* --- LOGO STYLES (Mimicking the Black/Red Logo Image) --- */
         .logo-container {
             display: flex;
             align-items: center;
@@ -64,7 +63,7 @@
         }
 
         .logo-icon {
-            /* Simplified Logo structure mimicking the eye for demonstration */
+            /* Black background element */
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -75,9 +74,11 @@
             background: var(--logo-black);
             border: 3px solid var(--logo-red);
             overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .logo-icon::before {
+            /* Red center element */
             content: '';
             position: absolute;
             width: 25px;
@@ -89,8 +90,7 @@
 
         h1 {
             font-size: 3rem;
-            /* Black text for the main title */
-            color: var(--logo-black); 
+            color: var(--dark-text); /* Logo text is strictly black */
             margin-bottom: 0;
             text-transform: uppercase;
             letter-spacing: 5px; 
@@ -112,22 +112,20 @@
         }
 
         .card {
-            /* Cards are white/light, appearing sleek on the chrome background */
+            /* White cards with strong shadow to stand out from chrome background */
             background: var(--card-bg); 
-            backdrop-filter: blur(5px);
             border-radius: 10px; 
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
-            border: 1px solid var(--light-gray); /* Subtle light border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            border: 1px solid #e0e0e0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
-            /* Hover effect uses the red accent subtly */
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(var(--logo-red), 0.1); 
+            box-shadow: 0 15px 35px rgba(var(--logo-red), 0.15); 
         }
 
         .section-title {
@@ -136,7 +134,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--logo-black); /* Section titles are black */
+            color: var(--dark-text); /* Section titles are black */
             font-weight: 700;
         }
 
@@ -147,13 +145,12 @@
 
         .query-input {
             width: 100%;
-            /* Input field is white with a subtle border */
             background: var(--card-bg); 
-            border: 1px solid var(--light-gray); 
+            border: 1px solid var(--chrome-dark); 
             border-radius: 8px; 
             padding: 15px;
             font-size: 1.1rem;
-            color: var(--dark-text);
+            color: var(--dark-text); /* Input text is black */
             margin-bottom: 20px;
             transition: all 0.3s ease;
             resize: none;
@@ -162,16 +159,17 @@
         .query-input:focus {
             outline: none;
             border-color: var(--success);
-            box-shadow: 0 0 0 3px rgba(var(--logo-red), 0.3); /* Red glow on focus */
+            box-shadow: 0 0 0 3px rgba(var(--logo-red), 0.3); 
         }
 
         .query-input::placeholder {
-            color: var(--gray);
+            color: var(--logo-black); /* Placeholder text is black */
+            opacity: 0.6;
         }
 
         .submit-btn {
             width: 100%;
-            /* Button uses the powerful red and black colors */
+            /* Button uses the powerful red and black colors for high contrast */
             background: linear-gradient(to right, var(--logo-red), var(--logo-black)); 
             color: white;
             border: none;
@@ -193,6 +191,7 @@
             box-shadow: 0 5px 15px rgba(var(--logo-red), 0.5);
         }
 
+        /* --- RESULTS SECTION --- */
         .results-container {
             display: none;
         }
@@ -216,14 +215,14 @@
             height: 300px;
             position: relative;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            background: #000;
+            background: var(--logo-black); /* Image background is logo black */
         }
 
         .car-badge {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--accent); /* Uses the bright accent red */
+            background: var(--success); 
             color: white;
             padding: 6px 12px;
             border-radius: 50px;
@@ -249,12 +248,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            /* Light specs with red highlight */
-            background: var(--light-gray); 
+            /* Specs background uses a very light chrome shade */
+            background: #f8f8f8; 
             padding: 10px 12px;
             border-radius: 6px;
             border-left: 3px solid var(--success); 
-            color: var(--dark-text);
+            color: var(--dark-text); /* Spec text is black */
             font-size: 0.9rem;
         }
 
@@ -269,57 +268,127 @@
         /* Other Cars List */
         .other-cars-title {
             color: var(--dark-text); 
-            border-bottom: 2px solid var(--light-gray);
+            border-bottom: 2px solid #e0e0e0; /* Light gray line */
         }
 
         .car-card {
-            /* Secondary car cards are white */
             background: var(--card-bg); 
-            border: 1px solid var(--light-gray);
+            border: 1px solid #e0e0e0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .car-card:hover {
-            background: var(--light-bg); 
+            background: #f9f9f9; 
             border-color: rgba(var(--logo-red), 0.2); 
         }
 
-        .car-model {
-            color: var(--dark-text);
+        .car-model, .car-price-small, .rating span {
+            color: var(--dark-text); /* Ensure all text in cards is black */
         }
 
         .spec-small {
-            /* Small specs use light background and black text */
-            background: var(--light-bg); 
+            background: #f5f5f5; /* Very light background for contrast */
             color: var(--dark-text);
         }
 
         .view-btn {
             color: var(--success);
             border: 1px solid var(--success);
+            padding: 5px 10px;
+            background: transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
         .view-btn:hover {
-            background: rgba(var(--logo-red), 0.1); 
+            background: var(--success); 
+            color: white;
         }
 
-        /* Loading and Error */
-        .spinner {
-            border-top: 5px solid var(--success);
-        }
-
-        .error-message {
-            color: var(--success);
-        }
-
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
-            color: var(--gray);
-            border-top: 1px solid var(--light-gray);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            color: var(--dark-text); /* Footer text is black */
+            border-top: 1px solid #b0b0b0; /* Use a darker chrome border */
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        footer .feature-highlights {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--dark-text); /* Feature text is black */
         }
 
         .feature i {
             color: var(--success);
+        }
+        
+        /* Utility styles for the demonstration */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3; 
+            border-top: 5px solid var(--success); 
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--success);
+            text-align: center;
+            padding: 20px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .car-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .car-card-header, .car-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .car-model {
+            font-weight: 700;
+        }
+
+        .car-price-small {
+            font-size: 1.1rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .car-specs-small {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -441,7 +510,7 @@
         // --- Helper: Generate Star HTML ---
         function generateStars(ratingValue) {
             let stars = '';
-            // Star color is explicitly set to yellow/gold in CSS
+            // Star color is explicitly set to yellow/gold
             const starColor = '#ffc107'; 
             for (let i = 0; i < 5; i++) {
                 if (i < Math.floor(ratingValue)) {
@@ -535,7 +604,7 @@
             }
         }
 
-        // --- Display Logic: Top Car (Minor adjustments for black text) ---
+        // --- Display Logic: Top Car ---
         function displayTopCar(car) {
             // Data Parsing
             const brand = (car.brand || "Unknown").toUpperCase();
@@ -605,10 +674,11 @@
             descriptionToggle.classList.remove('active');
             topCarDescription.classList.remove('active');
             descriptionToggle.querySelector('span').textContent = 'View Description';
+            descriptionToggle.querySelector('i').style.transform = 'rotate(0deg)';
             descriptionToggle.querySelector('i').style.color = 'var(--dark-text)';
         }
 
-        // --- Display Logic: Other Cars (Minor adjustments for black text) ---
+        // --- Display Logic: Other Cars ---
         function displayOtherCars(cars) {
             otherCarsList.innerHTML = '';
 
@@ -644,7 +714,7 @@
             });
         }
 
-        // --- Event Listeners (Same as before) ---
+        // --- Event Listeners ---
 
         // Form Submit
         carQueryForm.addEventListener('submit', function(e) {
